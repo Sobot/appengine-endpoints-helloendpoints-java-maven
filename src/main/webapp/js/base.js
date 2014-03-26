@@ -23,7 +23,7 @@ google.devrel.samples.hello = google.devrel.samples.hello || {};
  * @type {string}
  */
 google.devrel.samples.hello.CLIENT_ID =
-    'replace this with your web application client ID';
+    '958185182359-ia2nkns7ua22rqj4qf6f6qpk0r8tpohr.apps.googleusercontent.com';
 
 /**
  * Scopes used by the application.
@@ -116,6 +116,18 @@ google.devrel.samples.hello.listGreeting = function() {
 };
 
 /**
+ * Lists greetings via the API.
+ */
+google.devrel.samples.hello.testJpa = function() {
+  gapi.client.helloworld.greetings.testJpa().execute(
+      function(resp) {
+        if (!resp.code) {
+            google.devrel.samples.hello.print("test jpa");
+        }
+      });
+};
+
+/**
  * Gets a greeting a specified number of times.
  * @param {string} greeting Greeting to repeat.
  * @param {string} count Number of times to repeat it.
@@ -153,6 +165,10 @@ google.devrel.samples.hello.enableButtons = function() {
 
   document.getElementById('listGreeting').onclick = function() {
     google.devrel.samples.hello.listGreeting();
+  }
+  
+  document.getElementById('testJpa').onclick = function() {
+	    google.devrel.samples.hello.testJpa();	
   }
 
   document.getElementById('multiplyGreetings').onclick = function() {

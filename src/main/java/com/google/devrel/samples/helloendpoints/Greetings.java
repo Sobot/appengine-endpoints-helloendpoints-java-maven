@@ -3,10 +3,13 @@ package com.google.devrel.samples.helloendpoints;
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.appengine.api.users.User;
+import com.sobot.mobilegameshow.backend.entity.Question;
+import com.sobot.mobilegameshow.backend.persistance.EMF;
 
 import java.util.ArrayList;
 
 import javax.inject.Named;
+import javax.persistence.EntityManager;
 
 /**
  * Defines v1 of a helloworld API, which provides simple "greeting" methods.
@@ -33,6 +36,16 @@ public class Greetings {
 
   public ArrayList<HelloGreeting> listGreeting() {
     return greetings;
+  }
+  
+  public void testJpa() {
+	  Question question = new Question();
+	  question.setText("fedja text");
+	  EntityManager entityManager = EMF.get().createEntityManager();  
+	  entityManager.getTransaction().begin();  
+	  entityManager.persist(question);  
+	  entityManager.getTransaction().commit(); 
+	  System.out.println("test jpa");
   }
 
   @ApiMethod(name = "greetings.multiply", httpMethod = "post")
